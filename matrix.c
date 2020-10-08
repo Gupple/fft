@@ -36,7 +36,7 @@ size_t stride_v) {
         return NULL;
     }
     dot_product->re = 0; dot_product->im = 0;
-    for (size_t i = 0; i < length; ++i) {
+    for (uint32_t i = 0; i < length; ++i) {
         Complex *entry_u = u[0];
         Complex *entry_v = v[0];
         Complex *product = multiply(entry_u, entry_v);
@@ -46,7 +46,7 @@ size_t stride_v) {
         }
 
         Complex *temp = dot_product;
-        Complex *dot_product = add(dot_product, product);
+        dot_product = add(dot_product, product);
         free(temp); free(product);
         if (!dot_product) {
             return NULL;
@@ -70,7 +70,7 @@ Matrix* multiply_matrix(Matrix *u, Matrix *v) {
     size_t length = u->cols;
     product->rows = rows; product->cols = cols;
     size_t total_elements = rows * cols;
-    Complex **elements = malloc(total_elements * sizeof(Complex));
+    Complex **elements = malloc(total_elements * sizeof(Complex*));
     if (!elements) {
         free(product);
         return NULL;
@@ -120,8 +120,7 @@ Complex* (*func) (Complex*, Complex*)) {
 void free_intermediate(Matrix *m, Complex **elements, uint32_t index) {
     --index;
     while (index >= 0) {
-        free(elements[index]);
-        --index;
+        free(elements[index--]);
     }
     free(elements);
     free(m);
