@@ -4,6 +4,9 @@
 // Given z = a + bi, returns a new pointer to a - bi.
 Complex* conjugate(Complex *z) {
     Complex *conj = malloc(sizeof(Complex));
+    if (!conj) {
+        return NULL;
+    }
     conj->re = z->re;
     conj->im = -(z->im);
     return conj;
@@ -12,6 +15,9 @@ Complex* conjugate(Complex *z) {
 // Returns a new pointer to y + z.
 Complex* add(Complex *y, Complex *z) {
     Complex *new_sum = malloc(sizeof(Complex));
+    if (!new_sum) {
+        return NULL;
+    }
     new_sum->re = y->re + z->re;
     new_sum->im = y->im + z->im;
     return new_sum;
@@ -20,6 +26,9 @@ Complex* add(Complex *y, Complex *z) {
 // Returns a new pointer to y - z.
 Complex* subtract(Complex *y, Complex *z) {
     Complex *difference = malloc(sizeof(Complex));
+    if (!difference) {
+        return NULL;
+    }
     difference->re = y->re - z->re;
     difference->im = y->im - z->im;
     return difference;
@@ -28,6 +37,9 @@ Complex* subtract(Complex *y, Complex *z) {
 // Returns a new pointer to yz.
 Complex* multiply(Complex *y, Complex *z) {
     Complex *product = malloc(sizeof(Complex));
+    if (!product) {
+        return NULL;
+    }
     double prod_sum = (y->re + y->im) * (z->re + z->im);
     double prod_re = y->re * z->re;
     double prod_im = y->im * z->im;
@@ -40,6 +52,9 @@ Complex* multiply(Complex *y, Complex *z) {
 // Returns a new pointer to y / z. 
 Complex* divide(Complex *y, Complex *z) {
     Complex *product = malloc(sizeof(Complex));
+    if (!product) {
+        return NULL;
+    }
     double prod_sum = (y->re + y->im) * (z->re - z->im);
     double prod_re = y->re * z->re;
     double prod_im = y->im * -z->im;
