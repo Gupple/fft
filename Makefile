@@ -1,5 +1,5 @@
 test : complex.o matrix.o main.o
-	gcc -o test main.o complex.o matrix.o -lm
+	gcc -o test main.o matrix.o complex.o -lm
 
 main.o : main.c
 	gcc -c main.c
