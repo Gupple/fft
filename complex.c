@@ -1,5 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "complex.h"
+
+// If z = a + bi, Re(z) = a.
+double Re(Complex *z) {
+    return z->re;
+}
+
+// If z = a + bi, Im(z) = b.
+double Im(Complex *z) {
+    return z->im;
+}
 
 // Given z = a + bi, returns a new pointer to a - bi.
 Complex* conjugate(Complex *z) {

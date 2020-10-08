@@ -14,13 +14,13 @@ typedef struct Matrix {
 
 // Primitive matrix operations.
 Matrix* scale(Matrix *v, Complex *z);
-Matrix* add(Matrix *u, Matrix *v);
-Matrix* subtract(Matrix *u, Matrix *v);
+Matrix* add_matrix(Matrix *u, Matrix *v);
+Matrix* subtract_matrix(Matrix *u, Matrix *v);
 
-Complex* dot(Matrix *u, Matrix *v, uint32_t length, 
-uint32_t stride_u, uint32_t stride_v);
+Complex* dot(Complex **u, Complex **v, size_t length, 
+size_t stride_u, size_t stride_v);
 
-Matrix* multiply(Matrix *u, Matrix *v);
+Matrix* multiply_matrix(Matrix *u, Matrix *v);
 Matrix* operate(Matrix *u, Matrix *v, 
 Complex* (*func) (Complex*, Complex*));
 

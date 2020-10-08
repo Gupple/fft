@@ -13,5 +13,7 @@ Complex* add(Complex *y, Complex *z);
 Complex* subtract(Complex *y, Complex *z);
 Complex* multiply(Complex *y, Complex *z);
 Complex* divide(Complex *y, Complex *z);
+double Re(Complex *z);
+double Im(Complex *z);
 #endif
 
