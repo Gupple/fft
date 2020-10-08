@@ -67,6 +67,7 @@ Complex* divide(Complex *y, Complex *z) {
     if (!product) {
         return NULL;
     }
+
     double prod_sum = (y->re + y->im) * (z->re - z->im);
     double prod_re = y->re * z->re;
     double prod_im = y->im * -z->im;
@@ -74,7 +75,7 @@ Complex* divide(Complex *y, Complex *z) {
     product->re = prod_re - prod_im;
     product->im = prod_sum - (prod_re + prod_im);
 
-    double quotient = pow((y->re), 2.0) + pow((y->im), 2.0);
+    double quotient = pow(z->re, 2.0) + pow(z->im, 2.0);
     product->re = product->re / quotient;
     product->im = product->im / quotient;
     return product;
