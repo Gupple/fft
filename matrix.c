@@ -148,6 +148,44 @@ Matrix* setup(Matrix *u, Matrix *v) {
     return m;
 }
 
+Matrix* read_matrix(char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (!file) {
+        return NULL;
+    }
+    char buffer[MAX_WIDTH];
+    if (!fgets(buffer, MAX_WIDTH, file)) {
+        return NULL;
+    }
+    Matrix *matrix = malloc(sizeof(Matrix));
+    sscanf(buffer, "%zu %zu", &(matrix->rows), &(matrix->cols));
+    size_t total_elements = matrix->rows * matrix->cols;
+    matrix->elements = malloc(total_elements * sizeof(Complex*));
+    uint32_t scanned_elements = 0;
+    char *line_ptr = NULL;
+    while (fgets(buffer, MAX_WIDTH, file)) {
+        line_ptr = buffer;
+        for (size_t i = 0; i < matrix->cols; ++i) {
+            size_t num_bytes = 0;
+            double re, im;
+            sscanf(line_ptr, "%lf %lf%n", &re, &im, &num_bytes);
+            line_ptr += num_bytes;
+            Complex *z = create_complex(re, im);
+            if (!z) {
+                free_intermediate(matrix, matrix->elements, 
+                scanned_elements);
+                return NULL;
+            }
+            matrix->elements[scanned_elements++] = z;
+        }
+    }
+   if (scanned_elements != total_elements) {
+       free_intermediate(matrix, matrix->elements, scanned_elements);
+       return NULL; 
+   }
+   return matrix;
+}
+
 void free_matrix(Matrix *m) {
     size_t total_elements = m->rows * m->cols;
     for (size_t i = 0; i < total_elements; ++i) {

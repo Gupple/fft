@@ -8,6 +8,7 @@ typedef struct Complex {
 } Complex;
 
 // Primitive operations on complex numbers.
+Complex* create_complex(double re, double im);
 Complex* conjugate(Complex *z);
 Complex* add(Complex *y, Complex *z);
 Complex* subtract(Complex *y, Complex *z);

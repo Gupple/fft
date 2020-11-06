@@ -3,6 +3,17 @@
 #include <math.h>
 #include "complex.h"
 
+// Constructs a new complex number.
+Complex* create_complex(double re, double im) {
+    Complex* z = malloc(sizeof(Complex));
+    if (!z) {
+        return NULL;
+    }
+    z->re = re;
+    z->im = im;
+    return z;
+}
+
 // If z = a + bi, Re(z) = a.
 double Re(Complex *z) {
     return z->re;

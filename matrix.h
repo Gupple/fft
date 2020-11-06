@@ -1,6 +1,10 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#ifndef MAX_WIDTH
+#define MAX_WIDTH 8192
+#endif
+
 #include <stdio.h>
 #include <inttypes.h>
 #include "complex.h"
@@ -27,6 +31,7 @@ Complex* (*func) (Complex*, Complex*));
 void free_intermediate(Matrix *m, Complex **elements, 
 uint32_t index);
 
+Matrix* read_matrix(char *filename);
 void free_matrix(Matrix *m);
 Matrix* setup(Matrix *u, Matrix *v);
 #endif
